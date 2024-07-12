@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "146438550283",
+    "project_id": "oldi-sotdi-7bd75",
+    "storage_bucket": "oldi-sotdi-7bd75.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:146438550283:android:44f74d64b17f06116b280e",
+        "android_client_info": {
+          "package_name": "com.example.asalariapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoKsKdueRbTlcTBkZVIF1xb88ZOLQIeWg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
