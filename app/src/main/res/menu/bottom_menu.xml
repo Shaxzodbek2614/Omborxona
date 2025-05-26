@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Home" />
+
+    <item
+        android:id="@+id/scannerFragment"
+        android:icon="@drawable/ic_sell"
+        android:title="Skanerlangan" />
+
+    <item
+        android:id="@+id/placeholder"
+        android:title="" />
+
+    <item
+        android:id="@+id/addFragment"
+        android:icon="@drawable/plus"
+        android:title="Mahsulot qo'shish" />
+
+    <item
+        android:id="@+id/hisobotFragment"
+        android:icon="@drawable/report"
+        android:title="Hisobot" />
+
+</menu>

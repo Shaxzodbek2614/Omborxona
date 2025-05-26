@@ -10,14 +10,17 @@ import com.squareup.picasso.Picasso
 
 class MahsulotAdapter(val rvAction: RvAction,val list: ArrayList<Model>):RecyclerView.Adapter<MahsulotAdapter.Vh>() {
     inner class Vh(val itemRvBinding: ItemRvBinding):ViewHolder(itemRvBinding.root){
-        fun onBind(model: Model){
-            itemRvBinding.mahsulotNomi.text = model.name
-            itemRvBinding.mahsulotSoni.text = model.price.toString()
-            Picasso.get().load(model.image).into(itemRvBinding.qrCode)
+        fun onBind(model: Model,position: Int){
 
-            itemRvBinding.root.setOnClickListener {
-                rvAction.itemClick(model)
-            }
+                itemRvBinding.mahsulotNomi.text = model.name
+                itemRvBinding.mahsulotNarxi.text = model.price.toString()
+                itemRvBinding.mahsulotSoni.text = model.soni.toString()
+                Picasso.get().load(model.image).into(itemRvBinding.qrCode)
+
+                itemRvBinding.root.setOnClickListener {
+                    rvAction.itemClick(model)
+                }
+
         }
     }
 
@@ -31,7 +34,7 @@ class MahsulotAdapter(val rvAction: RvAction,val list: ArrayList<Model>):Recycle
 
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(list[position],position)
     }
     interface RvAction{
         fun itemClick(model: Model)

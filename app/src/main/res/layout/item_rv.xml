@@ -34,7 +34,7 @@
                 android:textSize="20sp"/>
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/soni"
+            android:id="@+id/narxi"
             android:layout_toEndOf="@id/qr_code"
             android:layout_below="@id/nomi"
             android:layout_width="wrap_content"
@@ -45,6 +45,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Tovar narxi: "
+                android:textSize="16sp"/>
+            <TextView
+                android:id="@+id/mahsulot_narxi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Tovar nomi: "
+                android:textSize="20sp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/soni"
+            android:layout_toEndOf="@id/qr_code"
+            android:layout_below="@id/narxi"
+            android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tovar soni: "
                 android:textSize="16sp"/>
             <TextView
                 android:id="@+id/mahsulot_soni"

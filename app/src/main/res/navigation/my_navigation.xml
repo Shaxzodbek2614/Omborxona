@@ -20,4 +20,9 @@
         android:name="com.example.asalariapp.fragments.ScannerFragment"
         android:label="fragment_scanner"
         tools:layout="@layout/fragment_scanner" />
+    <fragment
+        android:id="@+id/hisobotFragment"
+        android:name="com.example.asalariapp.fragments.HisobotFragment"
+        android:label="fragment_hisobot"
+        tools:layout="@layout/fragment_hisobot" />
 </navigation>

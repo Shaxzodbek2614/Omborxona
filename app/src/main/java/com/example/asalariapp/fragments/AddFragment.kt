@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import com.example.asalariapp.databinding.FragmentAddBinding
 import com.example.asalariapp.models.Mahsulot
 import com.example.asalariapp.models.Model
+import com.example.asalariapp.utils.MySharedPreferences
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -45,23 +46,27 @@ class AddFragment : Fragment() {
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), REQUEST_CODE_WRITE_EXTERNAL_STORAGE)
         }
+        MySharedPreferences.init(requireContext())
         firebaseDatabase = FirebaseDatabase.getInstance()
         reference = firebaseDatabase.getReference("mahsulotlar")
         firebaseStorage = FirebaseStorage.getInstance()
         referenceStorage = firebaseStorage.getReference(
             "QRCodeImages"
         )
+        val id = reference.push().key!!
+
         binding.apply {
             qrCodeBtn.setOnClickListener {
-                if (name.text.isNotEmpty() && price.text.isNotEmpty()) {
+                if (name.text.isNotEmpty() && price.text.isNotEmpty() && soni.text.isNotEmpty()) {
                     saveBtn.isEnabled = true
-                    val mahsulot = Mahsulot(name.text.toString(), price.text.toString().toInt())
+                    val mahsulot = Mahsulot(id,name.text.toString(), price.text.toString().toInt(),soni.text.toString().toInt())
                     val gson = Gson()
                     val gsonString = gson.toJson(mahsulot)
                     generateQrCode(gsonString)
                 }
             }
             saveBtn.setOnClickListener {
+                saveBtn.isEnabled = false
                 val m = System.currentTimeMillis()
                 val uri = getImageUri(requireContext(), bitmap)
                 val uploadTask = referenceStorage.child(m.toString()).putFile(uri)
@@ -69,14 +74,19 @@ class AddFragment : Fragment() {
                     if (it.task.isSuccessful){
                         val downloadUrl = it.metadata?.reference?.downloadUrl
                         downloadUrl?.addOnSuccessListener {
-                            val key = reference.push().key!!
-                            val mahsulot = Model(name.text.toString(), price.text.toString().toInt(),it.toString())
-                            reference.child(key).setValue(mahsulot)
+                            var kirim = MySharedPreferences.kirim
+                            kirim+=price.text.toString().toInt()*soni.text.toString().toInt()
+                            MySharedPreferences.kirim =kirim
+                            val model = Model(id,name.text.toString(), price.text.toString().toInt(),soni.text.toString().toInt(),it.toString())
+                            reference.child(id).setValue(model)
                             Toast.makeText(requireContext(), "Saqlandi", Toast.LENGTH_SHORT).show()
                             name.text.clear()
                             price.text.clear()
+                            soni.text.clear()
                             qrCode.setImageBitmap(null)
                             saveBtn.isEnabled = false
+
+
                         }
                     }
                 }
